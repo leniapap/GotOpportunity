@@ -12,9 +12,7 @@ public class Skills {
 	public double getDegreeGrade() {
 		return degreeGrade;
 	}
-	public void setDegreeGrade(double degreeGrade) {
-		this.degreeGrade = degreeGrade;
-	}
+	
 	public int getEducationLevel() {
 		return educationLevel;
 	}
