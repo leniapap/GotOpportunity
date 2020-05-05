@@ -2,12 +2,13 @@ import java.util.ArrayList;
 
 public class Administrator 
 {
-
+	private ArrayList<JobOffer> jobOffersList ;
 	private ArrayList<User> uList;
 	
 	public Administrator()
 	{
 		uList=new ArrayList<User>();
+		jobOffersList = new ArrayList<JobOffer>();
 	}
 	
 	public void addUser(User aUser)
@@ -15,9 +16,13 @@ public class Administrator
 		uList.add(aUser);
 	}
 	
+	public void addJobOffer(JobOffer aJobOffer) {
+		jobOffersList.add(aJobOffer);
+	}
+	
 	public ArrayList<Boolean> logAttempt(String aUsername, String aPassword)
 	{
-		 ArrayList<Boolean>  verification=new ArrayList<Boolean>();
+		ArrayList<Boolean>  verification=new ArrayList<Boolean>();
 		for(User user:uList)
 		{
 			if(user.getUserName().equals(aUsername))
@@ -67,5 +72,6 @@ public class Administrator
 		return aCandidate.getPhoneNumber();
 	}
 
+	
 	
 }

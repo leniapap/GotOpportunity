@@ -22,11 +22,6 @@ public class Candidate extends User {
 		return "Candidate";
 	}
 	
-	public void updateProfile(String age) 
-	{
-		
-	}
-	
 	public double calculateRating()
 	{
 		rating=skills.getDegreeGrade()+skills.getEducationLevel()+skills.getWorkExperience()+skills.getForeignLanguages().size()+skills.getProgrammingLanguages().size()
@@ -37,6 +32,10 @@ public class Candidate extends User {
 	
 	public double getDegreeGrade() {
 		return skills.getDegreeGrade();
+	}
+	
+	public int getAge() {
+		return age;
 	}
 	
 	public int getEducationLevel() {
@@ -55,6 +54,9 @@ public class Candidate extends User {
 		return skills.getSoftwareKnowledge();
 	}
 	
+	public double getRating() {
+		return rating;
+	}
 
 
 	

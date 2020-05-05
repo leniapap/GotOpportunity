@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-public class JobOffer {
+public class JobOffer implements Comparator<Candidate>,Comparable<Candidate> {
 
 	private String offerName;
 	private ArrayList<Candidate> enrolledCandidates;
@@ -71,25 +73,20 @@ public class JobOffer {
 		}
 		if (counter==offerSkills.getForeignLanguages().size())
 			rate+=2;
-		
 		counter=0;
 		for(String software :offerSkills.getSoftwareKnowledge())
 		{
 			for(String softwareCandidate: aCandidate.getSoftwareKnowledge())
 			{
-				if (software.equals(softwareCandidate)) {
-					
+				if (software.equals(softwareCandidate)) {		
 					counter++;
 				}
 			}
-			
 		}
 		if (counter==offerSkills.getSoftwareKnowledge().size())
-			rate+=2;
-		
+			rate+=2;	
 		rateList.add(rate);
 	}
-	
 	
 	public int  getRating(Candidate aCandidate)
 	{
@@ -99,13 +96,107 @@ public class JobOffer {
 			if (aCandidate.equals(candidates))
 				position=enrolledCandidates.indexOf(candidates);
 		}
-		return rateList.get(position);
-		
+		return rateList.get(position);	
 	}
 	
+	public 	void sortCandidates(int criterion)
+	{
+		if(criterion==0)//age
+			Collections.sort(enrolledCandidates,new Sortbyage());
+		if(criterion==1)//degree grade
+			Collections.sort(enrolledCandidates,new SortbyDegreeGrade());
+		if(criterion==2) //educational level
+			Collections.sort(enrolledCandidates,new SortbyEducationalLevel());
+		if(criterion==3) //work experience
+			Collections.sort(enrolledCandidates,new SortbyWorkExperience());
+	}
 	
-	
-	
-	
-	
+	public String getOfferName() {
+		return offerName;
+	}
+
+	@Override
+	public int compare(Candidate cand1, Candidate cand2) {
+		
+		return 0;
+	}
+
+	@Override
+	public int compareTo(Candidate arg0) {
+		
+		return 0;
+	}
+		
 }
+class Sortbyage implements Comparator<Candidate> 
+{ 
+    
+    public int compare(Candidate cand1,Candidate cand2) 
+    { 
+    	if(cand1.getAge()>cand2.getAge())
+    		return 1;
+    	else if(cand1.getAge()==cand2.getAge()) 
+    	{
+    		if(cand1.getRating()>cand2.getRating())
+    			return 1;
+    		else if(cand1.getRating()==cand2.getRating())
+    			return 0;
+    	}
+    		return -1;
+    } 
+} 
+
+class SortbyDegreeGrade implements Comparator<Candidate> 
+{ 
+   
+    public int compare(Candidate cand1, Candidate cand2) 
+    { 
+    	if(cand1.getDegreeGrade()>cand2.getDegreeGrade())
+    		return 1;
+    	else if(cand1.getDegreeGrade()==cand2.getDegreeGrade()) 
+    	{
+    		if(cand1.getRating()>cand2.getRating())
+    			return 1;
+    		else if(cand1.getRating()==cand2.getRating())
+    			return 0;
+    	}
+    		return -1;
+    } 
+} 
+
+class SortbyEducationalLevel implements Comparator<Candidate> 
+{ 
+   
+    public int compare(Candidate cand1, Candidate cand2) 
+    { 
+    	if(cand1.getEducationLevel()>cand2.getEducationLevel())
+    		return 1;
+    	else if(cand1.getEducationLevel()==cand2.getEducationLevel()) 
+    	{
+    		if(cand1.getRating()>cand2.getRating())
+    			return 1;
+    		else if(cand1.getRating()==cand2.getRating())
+    			return 0;
+    	}
+    		return -1;
+    	
+    } 
+} 
+
+class SortbyWorkExperience implements Comparator<Candidate> 
+{ 
+   
+    public int compare(Candidate cand1, Candidate cand2) 
+    { 
+    	if(cand1.getDegreeGrade()>cand2.getDegreeGrade())
+    		return 1;
+    	else if(cand1.getDegreeGrade()==cand2.getDegreeGrade()) 
+    	{
+    		if(cand1.getRating()>cand2.getRating())
+    			return 1;
+    		else if(cand1.getRating()==cand2.getRating())
+    			return 0;
+    	}
+    		return -1;
+    } 
+} 
