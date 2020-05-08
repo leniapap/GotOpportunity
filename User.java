@@ -38,6 +38,11 @@ public abstract class User {
     {
     	return phone;
     }
+
+	public String getFullName() {
+		return fullName;
+	}
+
 	
 	
 }

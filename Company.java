@@ -8,12 +8,12 @@ public class Company extends User {
 	private ArrayList<JobOffer> companyOffers = new ArrayList<JobOffer>() ;
 	
 	
-	public Company(String userName, String fullName, String password, String email, String phone,String location,int establishmentYear,int phoneNumber, ArrayList<JobOffer> companyOffers) {
+	public Company(String userName, String fullName, String password, String email, String phone,String location,int establishmentYear,int phoneNumber) {
 		super(userName, fullName, password, email, phone);
 		this.location=location;
 		this.establishmentYear=establishmentYear;
 		this.phoneNumber=phoneNumber;
-		this.companyOffers = companyOffers;
+		this.companyOffers =new ArrayList<JobOffer>();
 	}
 
 	@Override

@@ -12,13 +12,12 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate> {
 	
 	
 	
-	public JobOffer(String offerName, ArrayList<Candidate> enrolledCandidates, ArrayList<Candidate> shortList,
-			ArrayList<Integer> rateList,Skills offerSkills) {
+	public JobOffer(String offerName,Skills offerSkills) {
 		
 		this.offerName = offerName;
-		this.enrolledCandidates = enrolledCandidates;
-		this.shortList = shortList;
-		this.rateList = rateList;
+		this.enrolledCandidates = new ArrayList<Candidate>();
+		this.shortList = new ArrayList<Candidate>();
+		this.rateList = new ArrayList<Integer>();
 		this.offerSkills=offerSkills;
 	}
 	
@@ -126,7 +125,37 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate> {
 		
 		return 0;
 	}
-		
+
+	public ArrayList<Candidate> getEnrolledCandidates() {
+		return enrolledCandidates;
+	}
+
+	public ArrayList<Candidate> getShortList() {
+		return shortList;
+	}
+
+	public double  getDegreeGrade() {
+		return offerSkills.getDegreeGrade();
+	}
+	
+	public int  getWorkExperience() {
+		return offerSkills.getWorkExperience();
+	}
+	
+	public ArrayList<String>  getForeignLanguages() {
+		return offerSkills.getForeignLanguages();
+	}
+	
+	public ArrayList<String>  getProgrammingLanguages() {
+		return offerSkills.getProgrammingLanguages();
+	}
+
+	public ArrayList<String>  getSoftwareKnowledge() {
+		return offerSkills.getSoftwareKnowledge();
+	}
+	public int  getEducationLevel() {
+		return offerSkills.getEducationLevel();
+	}
 }
 class Sortbyage implements Comparator<Candidate> 
 { 

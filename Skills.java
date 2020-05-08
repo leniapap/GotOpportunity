@@ -9,6 +9,18 @@ public class Skills {
 	private ArrayList<String> foreignLanguages ;
 	private ArrayList<String> SoftwareKnowledge ;
 	
+	
+	public Skills(double degreeGrade, int educationLevel, ArrayList<String> programmingLanguages, int workExperience,
+			ArrayList<String> foreignLanguages, ArrayList<String> softwareKnowledge) {
+		
+		this.degreeGrade = degreeGrade;
+		this.educationLevel = educationLevel;
+		this.programmingLanguages = programmingLanguages;
+		this.workExperience = workExperience;
+		this.foreignLanguages = foreignLanguages;
+		SoftwareKnowledge = softwareKnowledge;
+	}
+
 	public double getDegreeGrade() {
 		return degreeGrade;
 	}

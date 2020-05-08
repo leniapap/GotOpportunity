@@ -7,11 +7,11 @@ public class Candidate extends User {
 	  private double rating;
 	  private ArrayList<JobOffer> AppliedJobOffers;
 	  
-	public Candidate(String userName, String fullName, String password, String email,int age,Skills skills, double rating,ArrayList<JobOffer> AppliedJobOffers,String phoneNumber) {
+	public Candidate(String userName, String fullName, String password, String email,int age,Skills skills,String phoneNumber) {
 		super(userName, fullName, password, email,phoneNumber);
 		this.age=age;
 		this.skills=skills;
-		this.rating=rating;
+		this.rating=this.calculateRating();
 		AppliedJobOffers=new ArrayList<JobOffer>();
 	}
 
@@ -58,10 +58,22 @@ public class Candidate extends User {
 		return rating;
 	}
 
+	public ArrayList<JobOffer> getAppliedJobOffers() {
+		return AppliedJobOffers;
+	}
 
+	public void setAppliedJobOffers(ArrayList<JobOffer> appliedJobOffers) {
+		AppliedJobOffers = appliedJobOffers;
+	}
+
+    
+	public void applyJobOffer(JobOffer aOffer) {
+		AppliedJobOffers.add(aOffer);
+	}
 	
-	
-	
+	public void updateSkills(Skills newSkills) {
+		skills=newSkills;
+	}
 
 	
 }
