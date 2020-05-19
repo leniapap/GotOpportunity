@@ -20,8 +20,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 
-public class JobOfferDetails extends JFrame{
+public class JobOfferDetails extends JFrame {
 
 	
 	private JPanel mainPanel;
@@ -76,7 +79,6 @@ public class JobOfferDetails extends JFrame{
 			model.addElement(offer.getOfferName());
 		
 		offersList.setModel(model);
-		JScrollPane scrollPane=new JScrollPane(offersList);
 		offersList.setBackground(Color.black);
 		offersList.setForeground(Color.white);
 		offersList.addMouseListener(new MouseListener() {
@@ -122,7 +124,9 @@ public class JobOfferDetails extends JFrame{
 				
 			}
 		});
-		
+		JScrollPane scrollPane = new JScrollPane(offersList);
+		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.white));             
+	    scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
 		middlePanel.add(scrollPane);
         mainPanel.add(middlePanel);
 		
@@ -160,7 +164,7 @@ public class JobOfferDetails extends JFrame{
                     if(selected==null)
                     	JOptionPane.showMessageDialog(null,"You need to select a Job Offer first!");
                     else {
-                    	//new ShortListFrame(selected);
+                      new ShortListFrame(selected);
   			    	  dispose();
                     }			    
 			    }
@@ -207,6 +211,7 @@ public class JobOfferDetails extends JFrame{
 		this.setVisible(true);
 		this.setTitle("MyJobOffers");
 		this.setSize(400,500);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		

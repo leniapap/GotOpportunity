@@ -175,6 +175,7 @@ public class SortFrame extends JFrame {
 		this.setSize(400, 500);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		
 	}
 	

@@ -11,7 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class MainMenuFrame extends JFrame {
 	
@@ -32,13 +34,18 @@ public class MainMenuFrame extends JFrame {
     private ImageIcon icon ;
 	private JLabel imageLabel ;
 	private JLabel ratingLabel ;
+	private Company aComp;
+	private Candidate aCand;
 	
 	public MainMenuFrame(User Auser) {		
 		if(Auser.getType().equals("Company")) {
+			
+			aComp= (Company) Auser;
+			welcomeLabel = new JLabel("->Welcome  " + Auser.getUserName()+",");
+			welcomeLabel.setFont(new Font("Courier",Font.BOLD,20));
 		
-			welcomeLabel = new JLabel("Welcome Company12,");
-			welcomeLabel.setFont(new Font("->Apply for a new Job", Font.BOLD, 20));
 			optionLabel = new JLabel("-> What would you like to do?");
+			optionLabel.setFont(new Font("Courier",Font.BOLD,20));
 			createOfferButton = new JButton("Create a Job Offer");
 			createOfferButton.setBackground(Color.black);
 			createOfferButton.setForeground(Color.white);
@@ -92,11 +99,15 @@ public class MainMenuFrame extends JFrame {
 			this.setVisible(true);
 			this.setTitle("Got Opportunity");
 			this.setSize(400,350);
+			this.setLocationRelativeTo(null);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		}
 		else {
-			welcomeLabel = new JLabel("Welcome Candidate12,");
+            aCand=(Candidate) Auser;
+			welcomeLabel = new JLabel("Welcome  "+ Auser.getUserName()+",");
+			welcomeLabel.setFont(new Font("Courier",Font.BOLD,20));
 			optionLabel = new JLabel("-> What would you like to do?");
+			optionLabel.setFont(new Font("Courier",Font.BOLD,20));
 			ratingButton = new JButton("See my Rating");
 			ratingButton.setBackground(Color.black);
 			ratingButton.setForeground(Color.white);
@@ -168,7 +179,8 @@ public class MainMenuFrame extends JFrame {
 			this.setIconImage(icon.getImage());
 			this.setVisible(true);
 			this.setTitle("Got Opportunity");
-			this.setSize(350,350);
+			this.setSize(350,400);
+			this.setLocationRelativeTo(null);
 			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		}
 	}
@@ -178,33 +190,43 @@ class ButtonListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(createOfferButton)) {
-	//		new CreateJobOfferFrame();
+	     	new CreateJobOfferFrame(aComp);
 			dispose();
 		}
 		else if(e.getSource().equals(viewOffersButton)) {
-	//		new OffersFrame();
+			if(aComp!=null)
+				new JobOfferDetails(aComp);
+			else
+				new ApplicationFrame(aCand);
 			dispose();
 		}
 		else if(e.getSource().equals(logOutButton)) {
 			dispose();
+		    new MainFrame();
 		}
 		else if(e.getSource().equals(ratingButton)) {
 			ratingLabel.setVisible(true);
 		}
 		else if(e.getSource().equals(updateButton)) {
-	//		new UpdateProfileFrame();
+	     	new UpdateProfileFrame(aCand);
 			dispose();
 		}
 		else if(e.getSource().equals(applyButton)) {
-	//		new NewApplicationFrame();
+	        new NewApplicationFrame(Main.data.getjobOffersList(),aCand);
 			dispose();
 		}
 		else if(e.getSource().equals(deleteButton)) {
-	//		user.deleteAccount();
-			dispose();
+		    Main.data.deleteAccount(aCand);
+		    String[] options = {"Yes","No"};
+		    int x=JOptionPane.showOptionDialog(null,"Are you sure you want to delete your account?","Delete your account",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,null, options,options[1]);
+		    if(x==0)
+		    {
+		      JOptionPane.showMessageDialog(null,"Your account has been deleted.");
+			  dispose();
+		    }
 		}
 		else {
-	//		new ApplicationFrame();
+	    	new ApplicationFrame(aCand);
 			dispose();
 		}
 	}

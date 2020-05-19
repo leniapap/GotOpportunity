@@ -146,6 +146,7 @@ public class ApplicationFrame extends JFrame{
 			this.setVisible(true);
 			this.setTitle("My Applications");
 			this.setSize(300,450);
+			this.setLocationRelativeTo(null);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		   
 		   

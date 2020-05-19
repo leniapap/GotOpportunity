@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Administrator 
+public class Administrator implements Serializable
 {
 	private ArrayList<JobOffer> jobOffersList ;
 	private ArrayList<User> uList;
@@ -20,56 +21,54 @@ public class Administrator
 		jobOffersList.add(aJobOffer);
 	}
 	
-	public ArrayList<Boolean> logAttempt(String aUsername, String aPassword)
+	public ArrayList<Integer> logAttempt(String aUsername, String aPassword)
 	{
-		ArrayList<Boolean>  verification=new ArrayList<Boolean>();
+		ArrayList<Integer>  verification=new ArrayList<Integer>();
+		int counter=0;
+		verification.add(-1);
+		verification.add(-1);
+		verification.add(-1);
 		for(User user:uList)
 		{
 			if(user.getUserName().equals(aUsername))
 					{
-				       verification.add(true);
-				       if(user.getPassword().equals(aPassword))
-				       	   verification.add(true);
-				       
+				       verification.set(0,1);
+				       if(user.getPassword().equals(aPassword)) {
+				       	    verification.set(1,1);
+				       		verification.set(2,counter);
+				       		break;
+				       }
 				       else 
-				    	   verification.add(false);
-				       		         
+				    	   verification.set(1,-1);
+				           
 					}
 			else
-				verification.add(false);
-			
+				verification.set(1,-1);
+			counter++;
 		}
 		return verification;
 	}
 	
-	public Candidate compare2Candidates(Candidate cand1,Candidate cand2,JobOffer currentJob)
-	{
-		Candidate bestCandidate;
-		int rate1=currentJob.getRating(cand1);
-		int rate2=currentJob.getRating(cand2);
-		int bestRate=Integer.compare(rate1,rate2);
-		if(bestRate==0)
-		{
-			if(cand1.calculateRating()>cand2.calculateRating()) {
-				bestCandidate=cand1;
-			}
-			else
-				bestCandidate=cand2;
-		}
-		else if(bestRate>0) {
-			bestCandidate=cand1;
-		}
-		else
-		{
-			bestCandidate=cand2;
 	
-		}
-		return bestCandidate;
-	}
 	
 	public String makeAppointment(Candidate aCandidate) 
 	{
 		return aCandidate.getPhoneNumber();
+	}
+	
+	public ArrayList<User> getuList()
+	{
+		return uList;
+		
+	}
+	public ArrayList<JobOffer> getjobOffersList()
+	{
+		return jobOffersList;
+		
+	}
+	
+	public void deleteAccount(User aUser) {
+		uList.remove(aUser);
 	}
 
 	

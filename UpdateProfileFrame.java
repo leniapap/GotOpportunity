@@ -3,6 +3,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -10,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -225,9 +230,8 @@ public class UpdateProfileFrame extends JFrame {
 	    update.addActionListener(new ActionListener(){
 	    public void actionPerformed(ActionEvent e) {
 			
-		    
-		    workExperienceSkills=Integer.parseInt(years.getText());
-		    gradeSkills=Double.valueOf(grade.getText());
+	  		workExperienceSkills=Integer.parseInt(years.getText());
+	   		gradeSkills=Double.valueOf(grade.getText());
 		    programmingLanguagesSkills=new ArrayList<String>();
 		    foreignLanguagesSkills=new ArrayList<String>();
 		    SoftwareKnowledgeSkills= new ArrayList<String>();
@@ -277,30 +281,42 @@ public class UpdateProfileFrame extends JFrame {
 	    
 	   Skills skills=new Skills(gradeSkills,educationlevelSkills,programmingLanguagesSkills,workExperienceSkills,foreignLanguagesSkills,SoftwareKnowledgeSkills);
 	   aCand.updateSkills(skills);
-	   System.out.println(aCand.getSoftwareKnowledge());
+	   //Εγγραφή δεδομένων
+		try {
+			FileOutputStream fouts = new FileOutputStream(Main.f);
+			ObjectOutputStream douts = new ObjectOutputStream(fouts);
+			douts.writeObject(Main.data);
+			fouts.close();
+			douts.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}catch (IOException e1) {
+			e1.printStackTrace();
+		}
+       
+	   JOptionPane.showMessageDialog(null, "Your Profile has been Updated!");
 	   dispose();
+	   new MainMenuFrame(aCand);
 	    
-	    }
-	    });
-	    
-	    
-		this.setContentPane(mainpanel);
-		this.add(panel1);
-		this.add(panel2);
-		this.add(panel3);
-		this.add(panel4);
-		this.add(panel5);
-		this.add(panel6);
-		this.add(endingPanel);
+	   }
+	   });
+	    	    
+	   this.setContentPane(mainpanel);
+	   this.add(panel1);
+	   this.add(panel2);
+	   this.add(panel3);
+	   this.add(panel4);
+	   this.add(panel5);
+	   this.add(panel6);
+	   this.add(endingPanel);
 
-		this.setIconImage(icon.getImage());
-		this.setVisible(true);
-		this.pack();
-		this.setTitle("My Profile");
-		this.setSize(450,600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-		
+	   this.setIconImage(icon.getImage());
+	   this.setVisible(true);
+	   this.pack();
+	   this.setTitle("My Profile");
+	   this.setSize(450,600);
+	   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+	   this.setLocationRelativeTo(null);
 	}
 	public void dispose() {
 		this.setVisible(false);
