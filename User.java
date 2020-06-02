@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public abstract class User {
+//yperklasi user tin opoia klironomoun oi klaseis candidate kai company
+public abstract class User implements Serializable{//gia na ginei i eggrafi ton dedomenon
 
 	private String userName ;
 	private String fullName ;
@@ -16,6 +18,14 @@ public abstract class User {
 		this.phone=phone;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public abstract String getType();
 	
 	public boolean isUser(String aUserName) {

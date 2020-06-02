@@ -7,6 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,7 +25,11 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 
+//frame taxinomisis ton ipopsifion enos job offer kai dinatotita gia prosthiki tous stin shortlist kathe job offer 
 public class SortFrame extends JFrame {
 
 	private JPanel mainPanel;
@@ -103,6 +111,9 @@ public class SortFrame extends JFrame {
 		headerPanel.add(rateListLabel);
 
 		JScrollPane scrollPane = new JScrollPane(candList);
+		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.white));             
+	    scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
+
 	
 		middlePanel.add(skillsList);
 		middlePanel.add(scrollPane);
@@ -240,9 +251,26 @@ public class SortFrame extends JFrame {
 			}
 		    if(selectedCandidate!=null)
 		    {
-		    	aJobOffer.addToShortlist(selectedCandidate);
-		        JOptionPane.showMessageDialog(null,"Selected Candidate has been succesfully added to your shortlist!");
-		    }
+		    	if(aJobOffer.getShortList().contains(selectedCandidate)) 
+		    		JOptionPane.showMessageDialog(null, selectedCandidate.getFullName()+" is already in your shortlist");
+		    	else {
+		    		aJobOffer.addToShortlist(selectedCandidate);
+		    		JOptionPane.showMessageDialog(null,"Selected Candidate has been succesfully added to your shortlist!");
+		    		
+		    		//data entry
+		    		try {
+		    			FileOutputStream fouts = new FileOutputStream(Main.f);
+		    			ObjectOutputStream douts = new ObjectOutputStream(fouts);
+		    			douts.writeObject(Main.data);
+		    			fouts.close();
+		    			douts.close();
+		    		} catch (FileNotFoundException e1) {
+		    			e1.printStackTrace();
+		    		}catch (IOException e1) {
+		    			e1.printStackTrace();
+		    		}
+		    	}
+		    }	
 		    else
 		    	JOptionPane.showMessageDialog(null,"You have to select a Candidate first!");
 		    	

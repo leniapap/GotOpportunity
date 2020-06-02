@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+//frame enimerosis skills tou candidate
 public class UpdateProfileFrame extends JFrame {
 
     private ImageIcon icon; 
@@ -79,7 +80,7 @@ public class UpdateProfileFrame extends JFrame {
 		mainpanel.setBackground(Color.white);
 		mainpanel.setLayout(new BoxLayout(mainpanel, BoxLayout.PAGE_AXIS));
 		
-		//panelHeader
+	
 		myProfile=new JLabel("-> My Profile");
 		myProfile.setFont(new Font("Courier", Font.BOLD, 30));
 		panelHeader=new JPanel();
@@ -87,7 +88,7 @@ public class UpdateProfileFrame extends JFrame {
 		panelHeader.add(myProfile);		
 		mainpanel.add(panelHeader);
 		
-		//1stPanel-Educational Level
+		
 		panel1=new JPanel();
 		educationalLevel= new JLabel("Educational Level:");
 		educationalLevel.setFont(new Font("Courier",Font.BOLD,20));
@@ -107,7 +108,7 @@ public class UpdateProfileFrame extends JFrame {
 		panel1.add(masterDegree);
 		panel1.add(phD);
 		
-		//2nd panel-Check of the Degree Grade
+	
 		panel2=new JPanel();
 		gradeOfDegree= new JLabel("Grade of Degree:");
 		gradeOfDegree.setFont(new Font("Courier",Font.BOLD,20));
@@ -119,7 +120,6 @@ public class UpdateProfileFrame extends JFrame {
 		panel2.add(gradeOfDegree);
 		panel2.add(grade);
 	
-		//3rd panel-check of knowledge of different programming languages
 		panel3=new JPanel();
 		programmingLanguages=new JLabel("Programming Languages:");
 		programmingLanguages.setFont(new Font("Courier",Font.BOLD,20));
@@ -146,7 +146,6 @@ public class UpdateProfileFrame extends JFrame {
 		panel3.add(ruby);
 		
 		
-		//panel4-check of knowledge of other languages
 		panel4=new JPanel();
 		otherLanguages= new JLabel("Other Languages:");
 		otherLanguages.setFont(new Font("Courier",Font.BOLD,20));
@@ -175,7 +174,7 @@ public class UpdateProfileFrame extends JFrame {
 		panel4.add(greek);
 		panel4.add(french);
 		
-		//panel5- check of knowledge of different software
+	
 		panel5=new JPanel();
 		panel5.setBackground(Color.white);
 		softwares= new JLabel("Software Knowledge:");
@@ -202,7 +201,7 @@ public class UpdateProfileFrame extends JFrame {
         panel5.add(unix);
         
 		
-        //panel6-check of work experience years
+        
 		panel6=new JPanel();
 		yearsOfWork=new JLabel("Years of Work Experience:");
 		yearsOfWork.setFont(new Font("Courier",Font.BOLD,20));
@@ -216,7 +215,7 @@ public class UpdateProfileFrame extends JFrame {
 		panel6.add(years);
 		
 		
-		//ending panel-Update Profile should be finished
+		
 		update= new JButton("Update Profile");
 		update.setBackground(Color.black);
 		update.setForeground(Color.white);
@@ -281,7 +280,7 @@ public class UpdateProfileFrame extends JFrame {
 	    
 	   Skills skills=new Skills(gradeSkills,educationlevelSkills,programmingLanguagesSkills,workExperienceSkills,foreignLanguagesSkills,SoftwareKnowledgeSkills);
 	   aCand.updateSkills(skills);
-	   //Εγγραφή δεδομένων
+	   //data entry
 		try {
 			FileOutputStream fouts = new FileOutputStream(Main.f);
 			ObjectOutputStream douts = new ObjectOutputStream(fouts);
