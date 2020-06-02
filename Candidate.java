@@ -1,6 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Candidate extends User {
+
+//Klasi ypopsifiou i opoia klironomei thn klasi user 
+public class Candidate extends User implements Serializable{//gia na ginei i eggrafi ton dedomenon
 
 	  private int age;
 	  private Skills skills;
@@ -11,7 +14,7 @@ public class Candidate extends User {
 		super(userName, fullName, password, email,phoneNumber);
 		this.age=age;
 		this.skills=skills;
-		this.rating=this.calculateRating();
+		this.rating=0;
 		AppliedJobOffers=new ArrayList<JobOffer>();
 	}
 
@@ -28,6 +31,15 @@ public class Candidate extends User {
 			   +skills.getSoftwareKnowledge().size();
 		
 		return rating;
+	}
+	
+	public void applyJobOffer(JobOffer aOffer) {
+		AppliedJobOffers.add(aOffer);
+	}
+	
+	public void updateSkills(Skills newSkills) {
+		skills=newSkills;
+		this.calculateRating();
 	}
 	
 	public double getDegreeGrade() {
@@ -62,18 +74,12 @@ public class Candidate extends User {
 		return AppliedJobOffers;
 	}
 
+	public Skills getSkills() {
+		return skills ;
+	}
+	
 	public void setAppliedJobOffers(ArrayList<JobOffer> appliedJobOffers) {
 		AppliedJobOffers = appliedJobOffers;
 	}
-
-    
-	public void applyJobOffer(JobOffer aOffer) {
-		AppliedJobOffers.add(aOffer);
-	}
-	
-	public void updateSkills(Skills newSkills) {
-		skills=newSkills;
-	}
-
 	
 }

@@ -20,6 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
+//parathiro emfanisis ton job offer sta opoia exei kanei apply o kathe xristis
 public class ApplicationFrame extends JFrame{
 
 	   private JLabel header;
@@ -61,8 +62,8 @@ public class ApplicationFrame extends JFrame{
 		   }
 	
 		   offersList.setModel(model);
-
-			offersList.addMouseListener(new MouseListener() {
+           //Mouse listener o opoios emfanizei ta stoixeia kathe aggelias me to klik tou xristi
+		   offersList.addMouseListener(new MouseListener() {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -121,6 +122,7 @@ public class ApplicationFrame extends JFrame{
 		   mainPanel.add(middlePanel);
 		   mainPanel.add(bottomPanel);
 		   
+		   //koumpi exodou
 		   backToMenu=new JButton("Back To Menu");
 		   backToMenu.addActionListener(new ActionListener(){
 			    public void actionPerformed(ActionEvent e) {

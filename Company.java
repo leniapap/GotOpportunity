@@ -1,7 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Company extends User implements Serializable{
+//Klasi etairias i opoia klironomei tin klasi user
+public class Company extends User implements Serializable{ //gia na ginei i eggrafi ton dedomenon
 
 	private String location;
 	private int establishmentYear;

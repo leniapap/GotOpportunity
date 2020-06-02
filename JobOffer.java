@@ -1,9 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class JobOffer implements Comparator<Candidate>,Comparable<Candidate> {
-
+//Klasi JobOffer stin opoia pragmatopoieitai kai i sigkrisi kai taxinomisi ton candidates epi mias job offer
+public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Serializable{ ////gia na ginei i eggrafi ton dedomenon
+    //xrisimopoieitai o comparator kai i comparable gia tin katallili sigkrisi kai taxinomisi ton ipopsifion
 	private String offerName;
 	private ArrayList<Candidate> enrolledCandidates;
 	private ArrayList<Candidate> shortList;
@@ -21,6 +23,30 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate> {
 		this.offerSkills=offerSkills;
 	}
 	
+	public Candidate compare2Candidates(Candidate cand1,Candidate cand2)
+	{
+		Candidate bestCandidate;
+		int rate1=this.getRating(cand1);
+		int rate2=this.getRating(cand2);
+		int bestRate=Integer.compare(rate1,rate2);
+		if(bestRate==0)
+		{
+			if(cand1.calculateRating()>cand2.calculateRating()) {
+				bestCandidate=cand1;
+			}
+			else
+				bestCandidate=cand2;
+		}
+		else if(bestRate>0) {
+			bestCandidate=cand2;
+		}
+		else
+		{
+			bestCandidate=cand1;
+
+		}
+		return bestCandidate;
+	}
 	public void addToShortlist(Candidate aCandidate)
 	{
 		shortList.add(aCandidate);
@@ -116,13 +142,11 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate> {
 
 	@Override
 	public int compare(Candidate cand1, Candidate cand2) {
-		
 		return 0;
 	}
 
 	@Override
 	public int compareTo(Candidate arg0) {
-		
 		return 0;
 	}
 
@@ -171,7 +195,7 @@ class Sortbyage implements Comparator<Candidate>
     		else if(cand1.getRating()==cand2.getRating())
     			return 0;
     	}
-    		return -1;
+    	return -1;
     } 
 } 
 
@@ -189,7 +213,7 @@ class SortbyDegreeGrade implements Comparator<Candidate>
     		else if(cand1.getRating()==cand2.getRating())
     			return 0;
     	}
-    		return -1;
+    	return -1;
     } 
 } 
 
@@ -207,7 +231,7 @@ class SortbyEducationalLevel implements Comparator<Candidate>
     		else if(cand1.getRating()==cand2.getRating())
     			return 0;
     	}
-    		return -1;
+    	return -1;
     	
     } 
 } 
@@ -226,6 +250,6 @@ class SortbyWorkExperience implements Comparator<Candidate>
     		else if(cand1.getRating()==cand2.getRating())
     			return 0;
     	}
-    		return -1;
+    	return -1;
     } 
 } 

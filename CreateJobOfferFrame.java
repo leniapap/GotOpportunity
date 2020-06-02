@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 	import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 	
+//frame dimiourgias enos neou JobOffer
 public class CreateJobOfferFrame extends JFrame {
 
 	private ImageIcon icon; 
@@ -76,7 +77,6 @@ public class CreateJobOfferFrame extends JFrame {
 	private int workExperienceSkills ;
 	private ArrayList<String> foreignLanguagesSkills ;
 	private ArrayList<String> SoftwareKnowledgeSkills ;
-		
 	private ArrayList<Candidate> enrolledCandidates;
 	private ArrayList<Candidate> shortList;
 	private ArrayList<Integer> rateList;
@@ -99,13 +99,13 @@ public class CreateJobOfferFrame extends JFrame {
 			nameTitle = new JLabel("Job Name:");
 			title.setFont(new Font("Courier",Font.BOLD,30));
 						
-			//panelHeader
+	
 			panelHeader=new JPanel();
 			panelHeader.setBackground(Color.white);
 			panelHeader.add(title);
 			mainpanel.add(panelHeader);
 			
-			//front Panel 
+			
 			
 			panel00 = new JPanel();
 			panel00.setBackground(Color.white);
@@ -128,7 +128,7 @@ public class CreateJobOfferFrame extends JFrame {
 			panel0.add(neededSkillsTitle);
 			neededSkillsTitle.setFont(new Font("Courier",Font.BOLD,15));
 			
-			//1stPanel-Educational Level
+	
 			panel1=new JPanel();
 			educationalLevel= new JLabel("Educational Level:");
 			educationalLevel.setFont(new Font("Courier",Font.BOLD,20));
@@ -148,7 +148,7 @@ public class CreateJobOfferFrame extends JFrame {
 			panel1.add(masterDegree);
 			panel1.add(phD);
 			
-			//2nd panel-Check of the Degree Grade
+		
 			panel2=new JPanel();
 			gradeOfDegree= new JLabel("Minimum Grade of Degree:");
 			gradeOfDegree.setFont(new Font("Courier",Font.BOLD,20));
@@ -160,7 +160,7 @@ public class CreateJobOfferFrame extends JFrame {
 			panel2.add(gradeOfDegree);
 			panel2.add(grade);
 		
-			//3rd panel-check of knowledge of different programming languages
+			
 			panel3=new JPanel();
 			programmingLanguages=new JLabel("Programming Languages:");
 			programmingLanguages.setFont(new Font("Courier",Font.BOLD,20));
@@ -186,8 +186,7 @@ public class CreateJobOfferFrame extends JFrame {
 			panel3.add(sql);
 			panel3.add(ruby);
 			
-			
-			//panel4-check of knowledge of other languages
+
 			panel4=new JPanel();
 			otherLanguages= new JLabel("Other Languages:");
 			otherLanguages.setFont(new Font("Courier",Font.BOLD,20));
@@ -216,7 +215,7 @@ public class CreateJobOfferFrame extends JFrame {
 			panel4.add(greek);
 			panel4.add(french);
 			
-			//panel5- check of knowledge of different software
+			
 			panel5=new JPanel();
 			panel5.setBackground(Color.white);
 			softwares= new JLabel("Software Knowledge:");
@@ -243,7 +242,7 @@ public class CreateJobOfferFrame extends JFrame {
 	        panel5.add(unix);
 	        
 			
-	        //panel6-check of work experience years
+	        
 			panel6=new JPanel();
 			yearsOfWork=new JLabel("Minimum years of Work Experience:");
 			yearsOfWork.setFont(new Font("Courier",Font.BOLD,20));
@@ -257,8 +256,8 @@ public class CreateJobOfferFrame extends JFrame {
 			panel6.add(years);
 			
 			
-			//ending panel-Update Profile should be finished
-			update= new JButton("Apply");
+			
+			update= new JButton("Create a Job Offer");
 			update.setBackground(Color.black);
 			update.setForeground(Color.white);
 			endingPanel=new JPanel();
@@ -269,6 +268,7 @@ public class CreateJobOfferFrame extends JFrame {
 			
 		    icon= new ImageIcon("icon.png");
 		    
+		    //Action listener gia tin eisagogi dedomenon sto profil
 		    update.addActionListener(new ActionListener(){
 		    public void actionPerformed(ActionEvent e) {
 				
@@ -326,7 +326,7 @@ public class CreateJobOfferFrame extends JFrame {
 		        offer = new JobOffer(nameString,skill);
 		        comp.addJobOffer(offer);
 		        Main.data.addJobOffer(offer);
-		      //Εγγραφή δεδομένων
+		      //data entry
 				try {
 					FileOutputStream fouts = new FileOutputStream(Main.f);
 					ObjectOutputStream douts = new ObjectOutputStream(fouts);

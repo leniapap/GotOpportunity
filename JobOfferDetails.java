@@ -24,6 +24,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
+//frame emfanisis ton leptomereion kathe aggelias
 public class JobOfferDetails extends JFrame {
 
 	
@@ -83,6 +84,7 @@ public class JobOfferDetails extends JFrame {
 		offersList.setForeground(Color.white);
 		offersList.addMouseListener(new MouseListener() {
 
+			//Mouselistener gia tin emfanisi ton stoixeion kathe job offer me to klik tou xristi
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String selected = "";
@@ -164,7 +166,7 @@ public class JobOfferDetails extends JFrame {
                     if(selected==null)
                     	JOptionPane.showMessageDialog(null,"You need to select a Job Offer first!");
                     else {
-                      new ShortListFrame(selected);
+                      new ShortListFrame(company,selected);
   			    	  dispose();
                     }			    
 			    }

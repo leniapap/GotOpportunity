@@ -1,6 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//Klassi diaxeirisis xriston kai job offers. Edo ginetai i epivevaiosi ton eisodon logariasmon kai i diagrafi logariasmon
+
 public class Administrator implements Serializable
 {
 	private ArrayList<JobOffer> jobOffersList ;
@@ -69,6 +71,12 @@ public class Administrator implements Serializable
 	
 	public void deleteAccount(User aUser) {
 		uList.remove(aUser);
+		for(JobOffer offer : jobOffersList) {
+			if(offer.getEnrolledCandidates().contains(aUser))
+				offer.getEnrolledCandidates().remove(aUser);
+				if(offer.getShortList().contains(aUser))
+					offer.getShortList().remove(aUser);
+		}
 	}
 
 	
