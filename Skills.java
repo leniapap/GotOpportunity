@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Skills {
+public class Skills implements Serializable{
 	
 	private double degreeGrade;
 	private int educationLevel ;
