@@ -4,6 +4,10 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -15,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+//arxiko menu kathe xristi analoga me ton typo user pou erxetai os orisma
 public class MainMenuFrame extends JFrame {
 	
 	private JLabel welcomeLabel;
@@ -223,6 +228,19 @@ class ButtonListener implements ActionListener{
 		    {
 		      JOptionPane.showMessageDialog(null,"Your account has been deleted.");
 			  dispose();
+				//data entry
+			 try {
+					FileOutputStream fouts = new FileOutputStream(Main.f);
+					ObjectOutputStream douts = new ObjectOutputStream(fouts);
+					douts.writeObject(Main.data);
+					fouts.close();
+					douts.close();
+			  } catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+			  }catch (IOException e1) {
+					e1.printStackTrace();
+			  }
+			  new MainFrame();
 		    }
 		}
 		else {

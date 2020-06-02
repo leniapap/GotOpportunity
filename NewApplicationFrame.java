@@ -26,6 +26,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
+//frame eggrafis se neo job offer apo enan candidate
 public class NewApplicationFrame extends JFrame {
 	
 	private JLabel titleLabel ;
@@ -80,6 +81,7 @@ public class NewApplicationFrame extends JFrame {
 		
 		jobList.setModel(model);
 		
+		//emfanisi skills pou apaitountai gia tin eggrafi se ena job offer
 		jobList.addMouseListener(new MouseListener() {
 
 			@Override
@@ -167,45 +169,49 @@ public class NewApplicationFrame extends JFrame {
 				dispose();
 			}			
 			else {
-			String selectedOfferName = (String) jobList.getSelectedValue(); 
-			JobOffer selectedOffer = null;
-			for(JobOffer offer : offersList) {
-				if(offer.getOfferName().equals(selectedOfferName)) {
-					selectedOffer = offer ;
-					break ;
-				}
-			}			
+				if(cand.getSkills() == null)
+					JOptionPane.showMessageDialog(null, "You need to fill your profile first!");
+				else {
+					String selectedOfferName = (String) jobList.getSelectedValue(); 
+					JobOffer selectedOffer = null;
+					for(JobOffer offer : offersList) {
+						if(offer.getOfferName().equals(selectedOfferName)) {
+							selectedOffer = offer ;
+							break ;
+						}
+					}			
 			
-			if(selectedOffer!=null)
-			{
-				if(selectedOffer.getEnrolledCandidates().contains(cand))
-					JOptionPane.showMessageDialog(null,"You have already applied to this offer!");
-				else
-				{
-					cand.applyJobOffer(selectedOffer);				
-				selectedOffer.addCandidateToJobOffer(cand);
-				 //Εγγραφή δεδομένων
-				try {
-					FileOutputStream fouts = new FileOutputStream(Main.f);
-					ObjectOutputStream douts = new ObjectOutputStream(fouts);
-					douts.writeObject(Main.data);
-					fouts.close();
-					douts.close();
-				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
-				}catch (IOException e1) {
-					e1.printStackTrace();
-				}
+					if(selectedOffer!=null)
+					{
+						if(selectedOffer.getEnrolledCandidates().contains(cand))
+							JOptionPane.showMessageDialog(null,"You have already applied to this offer!");
+						else
+						{
+							cand.applyJobOffer(selectedOffer);				
+							selectedOffer.addCandidateToJobOffer(cand);
+							//data entry
+							try {
+								FileOutputStream fouts = new FileOutputStream(Main.f);
+								ObjectOutputStream douts = new ObjectOutputStream(fouts);
+								douts.writeObject(Main.data);
+								fouts.close();
+								douts.close();
+							} catch (FileNotFoundException e1) {
+								e1.printStackTrace();
+							}catch (IOException e1) {
+								e1.printStackTrace();
+							}
 		        
-				JOptionPane.showMessageDialog(null, "You have successfully applied to the Job Offer's List!");
-				new MainMenuFrame(cand);
-				dispose();
+							JOptionPane.showMessageDialog(null, "You have successfully applied to the Job Offer's List!");
+							new MainMenuFrame(cand);
+							dispose();
+						}
+					}
+					else
+						JOptionPane.showMessageDialog(null, "You have to select an Offer first!");
+				}
 			}
 		}
-			else
-				JOptionPane.showMessageDialog(null, "You have to select an Offer first!");
-			}
-		}	
 	}
 	
 	public void dispose() {
