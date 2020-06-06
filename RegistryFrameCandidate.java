@@ -1,33 +1,35 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Window;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
-import java.awt.Color;
-import javax.swing.UIManager;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
 
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.JTextComponent;
+
+//frame eggrafis candidate
 public class RegistryFrameCandidate extends JFrame {
 
 	private JPanel contentPane;
@@ -35,12 +37,12 @@ public class RegistryFrameCandidate extends JFrame {
 	private JTextField textemail;
 	private JTextField textage;
 	private JTextField textusername;
-	private JTextField textPhoneNumber;
 	private JPasswordField textpassword;
 	private ImageIcon icon;
+	private JTextField textphone;
 	
 	public RegistryFrameCandidate() {
-		setTitle("Candidate Regisrty");
+		setTitle("Candidate Registry");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 350, 350);
 		contentPane = new JPanel();
@@ -49,151 +51,177 @@ public class RegistryFrameCandidate extends JFrame {
 		
 		
 		JLabel lblPersonalInfo = new JLabel("Personal Info");
+		lblPersonalInfo.setBounds(116, 5, 112, 24);
 		lblPersonalInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPersonalInfo.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblPersonalInfo.setFont(new Font("Courier", Font.BOLD, 15));
 		
 		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblName.setBounds(91, 51, 43, 18);
+		lblName.setFont(new Font("Courier", Font.BOLD, 13));
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblEmail.setBounds(87, 83, 47, 18);
+		lblEmail.setFont(new Font("Courier", Font.BOLD, 13));
 		
 		JLabel lblAge = new JLabel("Age:");
-		lblAge.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lblAge.setBounds(97, 150, 32, 18);
+		lblAge.setFont(new Font("Courier", Font.BOLD, 13));
 		
 		textname = new JTextField();
-		textname.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		textname.setBounds(143, 48, 106, 24);
+		textname.setFont(new Font("Courier", Font.ITALIC, 13));
 		textname.setText("Type..");
 		textname.setBackground(new Color(0, 0, 0));
 		textname.setForeground(Color.WHITE);
 		textname.setColumns(10);
+		textname.addFocusListener(new MyFocusListener());
 		
 		textemail = new JTextField();
-		textemail.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		textemail.setBounds(143, 83, 106, 24);
+		textemail.setFont(new Font("Courier", Font.ITALIC, 13));
 		textemail.setText("Type..");
 		textemail.setForeground(Color.WHITE);
 		textemail.setBackground(new Color(0, 0, 0));
 		textemail.setColumns(10);
+		textemail.addFocusListener(new MyFocusListener());
 		
 		textage = new JTextField();
-		textage.setFont(new Font("Times New Roman", Font.ITALIC, 15));
+		textage.setBounds(143, 147, 106, 24);
+		textage.setFont(new Font("Courier", Font.ITALIC, 13));
 		textage.setText("Type..");
 		textage.setForeground(Color.WHITE);
 		textage.setBackground(new Color(0, 0, 0));
 		textage.setColumns(10);
+		textage.addFocusListener(new MyFocusListener());
+		
+		
+		
+		textusername = new JTextField();
+		textusername.setBounds(143, 182, 106, 24);
+		textusername.setBackground(Color.BLACK);
+		textusername.setForeground(Color.WHITE);
+		textusername.setFont(new Font("Courier", Font.ITALIC, 13));
+		textusername.setText("Type..");
+		textusername.setColumns(10);
+		textusername.addFocusListener(new MyFocusListener());
+		
+		textpassword = new JPasswordField();
+		textpassword.setBounds(143, 216, 106, 24);
+		textpassword.setBackground(Color.BLACK);
+		textpassword.setForeground(Color.WHITE);
+		textpassword.setFont(new Font("Courier", Font.ITALIC, 13));
+		textpassword.setColumns(10);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setBounds(57, 185, 72, 18);
+		lblUsername.setFont(new Font("Courier", Font.BOLD, 13));
+		
+		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setBounds(62, 219, 67, 18);
+		lblPassword.setFont(new Font("Courier", Font.BOLD, 13));
+		
+		
+		
+		JLabel lblPhone = new JLabel("Phone:");
+		lblPhone.setFont(new Font("Courier", Font.BOLD, 13));
+		lblPhone.setBounds(83, 125, 46, 14);
+		
+		
+		textphone = new JTextField();
+		textphone.setForeground(Color.WHITE);
+		textphone.setBackground(Color.BLACK);
+		textphone.setFont(new Font("Courier", Font.ITALIC, 13));
+		textphone.setText("Type..");
+		textphone.setBounds(143, 116, 106, 23);
+		textphone.setColumns(10);
+		textphone.addFocusListener(new MyFocusListener());
 		
 		JButton btnComplete = new JButton("Complete");
+		btnComplete.setBounds(143, 258, 106, 37);
 		btnComplete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JComponent comp = (JComponent) e.getSource();
-				  Window win = SwingUtilities.getWindowAncestor(comp);
-				  win.dispose();
-				  String name,email,age,username,password;
+				  
+				  String name,email,phone,age,username,password;
 				  name = textname.getText();
 				  email = textemail.getText();
 				  age = textage.getText();
 				  username = textusername.getText();
 				  password = textpassword.getText();
-				  Main.data.addUser(new Candidate(username,name,password,email,Integer.parseInt(age),null,"1234"));
-				//Εγγραφή δεδομένων
-					try {
-						FileOutputStream fouts = new FileOutputStream(Main.f);
-						ObjectOutputStream douts = new ObjectOutputStream(fouts);
-						douts.writeObject(Main.data);
-						fouts.close();
-						douts.close();
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					}catch (IOException e1) {
-						e1.printStackTrace();
-					}
+				  phone = textphone.getText();
+				  boolean flag = false;
+				  for(User aUser: Main.data.getuList())
+				  {
+					  if(aUser.getUserName().equals(username))
+					  {
+						  flag = true;
+						  break;
+					  }
+				  }
+				  if(username.equals("")||password.equals("")||name.equals("")||email.equals("")||age.equals("")||phone.equals(""))
+				  {
+					  JOptionPane.showMessageDialog(null,"Fill all the fields" );
+				  }else
+				  {
+				  
+					  if(flag)
+					  {
+						  JOptionPane.showMessageDialog(null,"Username already exists, type another one" );
+					  }else
+					  {
+						  JComponent comp = (JComponent) e.getSource();
+						  Window win = SwingUtilities.getWindowAncestor(comp);
+						  win.dispose();
 						  
+						  Main.data.addUser(new Candidate(username, name, password,email,
+								  Integer.parseInt(age), null, phone));
+						  //data entry
+							try {
+								
+								FileOutputStream fouts = new FileOutputStream(Main.f);
+								ObjectOutputStream douts = new ObjectOutputStream(fouts);
+								douts.writeObject(Main.data);
+								fouts.close();
+								douts.close();
+							} catch (FileNotFoundException e1) {
+								e1.printStackTrace();
+							}catch (IOException e1) {
+								e1.printStackTrace();
+							}
+					  }
+				  }
 			}
 		});
-		
-		btnComplete.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		btnComplete.setFont(new Font("Courier", Font.BOLD, 13));
 		btnComplete.setForeground(Color.WHITE);
 		btnComplete.setBackground(Color.BLACK);
 		btnComplete.setBorderPainted(false);
 		
-		textusername = new JTextField();
-		textusername.setBackground(Color.BLACK);
-		textusername.setForeground(Color.WHITE);
-		textusername.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		textusername.setText("Type..");
-		textusername.setColumns(10);
-		
-		textpassword = new JPasswordField();
-		textpassword.setBackground(Color.BLACK);
-		textpassword.setForeground(Color.WHITE);
-		textpassword.setFont(new Font("Times New Roman", Font.ITALIC, 15));
-		textpassword.setColumns(10);
-		
-		JLabel lblUsername = new JLabel("Username:");
-		lblUsername.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(57, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(lblPersonalInfo)
-							.addGap(101))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblPassword)
-								.addComponent(lblUsername)
-								.addComponent(lblName)
-								.addComponent(lblEmail)
-								.addComponent(lblAge))
-							.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(textemail)
-								.addComponent(textname, Alignment.LEADING)
-								.addComponent(textage, Alignment.LEADING)
-								.addComponent(textusername, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textpassword, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnComplete, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addGap(80))))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblPersonalInfo)
-					.addGap(19)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblName)
-						.addComponent(textname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblEmail)
-						.addComponent(textemail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblAge))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textusername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblUsername))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textpassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPassword))
-					.addGap(26)
-					.addComponent(btnComplete, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(31, Short.MAX_VALUE))
-		);
-		contentPane.setLayout(gl_contentPane);
-		
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		contentPane.add(lblPersonalInfo);
+		contentPane.add(lblPassword);
+		contentPane.add(lblUsername);
+		contentPane.add(lblName);
+		contentPane.add(lblEmail);
+		contentPane.add(lblAge);
+		contentPane.add(textemail);
+		contentPane.add(textname);
+		contentPane.add(textage);
+		contentPane.add(textusername);
+		contentPane.add(textpassword);
+		contentPane.add(btnComplete);
+		contentPane.add(lblPhone);
+		contentPane.add(textphone);
+		
 		icon = new ImageIcon("icon.png");
 		this.setIconImage(icon.getImage());
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}
 }
+class MyFocusListener extends FocusAdapter {
+	   public void focusGained(FocusEvent fEvt) {
+	      JTextComponent component = (JTextComponent) fEvt.getSource();
+	      component.selectAll();
+	   }
+	}
