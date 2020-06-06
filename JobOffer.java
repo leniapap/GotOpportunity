@@ -38,11 +38,11 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 				bestCandidate=cand2;
 		}
 		else if(bestRate>0) {
-			bestCandidate=cand2;
+			bestCandidate=cand1;
 		}
 		else
 		{
-			bestCandidate=cand1;
+			bestCandidate=cand2;
 
 		}
 		return bestCandidate;
