@@ -10,7 +10,7 @@ import javax.swing.*;
 public class MainFrame extends JFrame{
 	
 	 private JPanel mainpanel,logSignPanel,usernamepanel,passwordpanel,imagepanel;
-	 private JButton signInButton,logInButton;
+	 private JButton signUpButton,signInButton;
 	 private JTextField usernametext;
 	 private JPasswordField passwordtext;
 	 private ImageIcon image,icon;
@@ -58,16 +58,16 @@ public class MainFrame extends JFrame{
 		
 		
 		
+		signUpButton = new JButton("Sign up");
+		signUpButton.setBackground(Color.black);
+		signUpButton.setForeground(Color.white);
 		signInButton = new JButton("Sign in");
 		signInButton.setBackground(Color.black);
 		signInButton.setForeground(Color.white);
-		logInButton = new JButton("Log in");
-		logInButton.setBackground(Color.black);
-		logInButton.setForeground(Color.white);
 		orText = new JLabel("or");
 		logSignPanel.add(signInButton);
 		logSignPanel.add(orText);
-		logSignPanel.add(logInButton);
+		logSignPanel.add(signUpButton);
 		
 		
 
@@ -88,7 +88,7 @@ public class MainFrame extends JFrame{
 		mainpanel.add(contactInfo2);
 		mainpanel.add(contactInfo3);
 		
-			logInButton.addActionListener(new ActionListener(){
+			signInButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				ArrayList<Integer>  verification=new ArrayList<Integer>();
 				String username = usernametext.getText();
@@ -125,7 +125,7 @@ public class MainFrame extends JFrame{
 		});
 		
 	
-		signInButton.addActionListener(new ActionListener(){
+		signUpButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				new RegistryFrame();			
 			}

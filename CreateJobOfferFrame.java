@@ -63,12 +63,12 @@ public class CreateJobOfferFrame extends JFrame {
 	private JRadioButton hindi;
 	private JRadioButton arabic;
 	private JRadioButton chinese;
-	private JRadioButton android;
-	private JRadioButton windows;
-	private JRadioButton macOSX;
-	private JRadioButton macoS;
-	private JRadioButton linux;
-	private JRadioButton unix;
+	private JRadioButton photoshop;
+	private JRadioButton max;
+	private JRadioButton tableau;
+	private JRadioButton matlab;
+	private JRadioButton sourceTree;
+	private JRadioButton visualParadigm;
 	private JPanel panelHeader;
 	private JPanel endingPanel;
 	private double gradeSkills;
@@ -77,9 +77,6 @@ public class CreateJobOfferFrame extends JFrame {
 	private int workExperienceSkills ;
 	private ArrayList<String> foreignLanguagesSkills ;
 	private ArrayList<String> SoftwareKnowledgeSkills ;
-	private ArrayList<Candidate> enrolledCandidates;
-	private ArrayList<Candidate> shortList;
-	private ArrayList<Integer> rateList;
 	private String nameString;
 	private Company comp;
 	private Skills skill;
@@ -222,24 +219,24 @@ public class CreateJobOfferFrame extends JFrame {
 			softwares.setFont(new Font("Courier",Font.BOLD,20));
 			panel5.setLayout(new FlowLayout());
 			panel5.add(softwares);
-			android=new JRadioButton("Android");
-			windows=new JRadioButton("Microsoft Windows");
-			macOSX=new JRadioButton("mac Osx");
-			macoS= new JRadioButton("mac Os");
-			linux=new JRadioButton("linux");
-			unix=new JRadioButton("Unix");
-			macoS.setBackground(Color.white);
-	        android.setBackground(Color.white);
-	        windows.setBackground(Color.white);
-	        macOSX.setBackground(Color.white);
-	        linux.setBackground(Color.white);
-	        unix.setBackground(Color.white);
-	        panel5.add(macoS);
-	        panel5.add(android);
-	        panel5.add(windows);
-	        panel5.add(macOSX);
-	        panel5.add(linux);
-	        panel5.add(unix);
+			photoshop=new JRadioButton("Adobe Photoshop CC");
+			max=new JRadioButton("3dsMax");
+			tableau=new JRadioButton("Tableau");
+			matlab= new JRadioButton("Matlab");
+			sourceTree=new JRadioButton("SourceTree");
+			visualParadigm=new JRadioButton("Visual Paradigm");
+			photoshop.setBackground(Color.white);
+	        max.setBackground(Color.white);
+	        tableau.setBackground(Color.white);
+	        matlab.setBackground(Color.white);
+	        sourceTree.setBackground(Color.white);
+	        visualParadigm.setBackground(Color.white);
+	        panel5.add(photoshop);
+	        panel5.add(max);
+	        panel5.add(tableau);
+	        panel5.add(matlab);
+	        panel5.add(sourceTree);
+	        panel5.add(visualParadigm);
 	        
 			
 	        
@@ -310,16 +307,16 @@ public class CreateJobOfferFrame extends JFrame {
 		    		foreignLanguagesSkills.add("Arabic");
 		    	if(chinese.isSelected())
 		    		foreignLanguagesSkills.add("Chinese");
-		    	if(android.isSelected())
-		    		SoftwareKnowledgeSkills.add("Android");
-		    	if(macOSX.isSelected())	
-		    		SoftwareKnowledgeSkills.add("maxOSX");
-		    	if(macoS.isSelected())
-		    		SoftwareKnowledgeSkills.add("macoS");
-		        if(linux.isSelected())
-		        	SoftwareKnowledgeSkills.add("Linux");
-		        if(unix.isSelected())
-		        	SoftwareKnowledgeSkills.add("Unix");
+		    	if(photoshop.isSelected())
+		    		SoftwareKnowledgeSkills.add("Adobe Photoshop CC");
+		    	if(max.isSelected())	
+		    		SoftwareKnowledgeSkills.add("3dsMax");
+		    	if(tableau.isSelected())
+		    		SoftwareKnowledgeSkills.add("Tableau");
+		        if(matlab.isSelected())
+		        	SoftwareKnowledgeSkills.add("SourceTree");
+		        if(visualParadigm.isSelected())
+		        	SoftwareKnowledgeSkills.add("Visual Paradigm");
 		        
 		    
 		        skill = new Skills(gradeSkills,educationlevelSkills,programmingLanguagesSkills,workExperienceSkills,foreignLanguagesSkills,SoftwareKnowledgeSkills);
