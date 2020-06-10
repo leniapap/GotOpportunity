@@ -65,9 +65,9 @@ public class MainFrame extends JFrame{
 		signInButton.setBackground(Color.black);
 		signInButton.setForeground(Color.white);
 		orText = new JLabel("or");
-		logSignPanel.add(signInButton);
-		logSignPanel.add(orText);
 		logSignPanel.add(signUpButton);
+		logSignPanel.add(orText);
+		logSignPanel.add(signInButton);
 		
 		
 
