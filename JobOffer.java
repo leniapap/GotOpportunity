@@ -10,6 +10,7 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 	private ArrayList<Candidate> enrolledCandidates;
 	private ArrayList<Candidate> shortList;
 	private ArrayList<Integer> rateList;
+	private ArrayList<Integer> shortRateList;
 	private Skills offerSkills;
 	
 	
@@ -20,16 +21,16 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 		this.enrolledCandidates = new ArrayList<Candidate>();
 		this.shortList = new ArrayList<Candidate>();
 		this.rateList = new ArrayList<Integer>();
+		this.shortRateList=new ArrayList<Integer>();
 		this.offerSkills=offerSkills;
 	}
 	
 	public Candidate compare2Candidates(Candidate cand1,Candidate cand2)
 	{
 		Candidate bestCandidate;
-		int rate1=this.getRating(cand1);
-		int rate2=this.getRating(cand2);
-		int bestRate=Integer.compare(rate1,rate2);
-		if(bestRate==0)
+		int rate1=shortRateList.get(shortList.indexOf(cand1));
+		int rate2=shortRateList.get(shortList.indexOf(cand2));
+		if(rate1==rate2)
 		{
 			if(cand1.calculateRating()>cand2.calculateRating()) {
 				bestCandidate=cand1;
@@ -37,7 +38,7 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 			else
 				bestCandidate=cand2;
 		}
-		else if(bestRate>0) {
+		else if(rate1>rate2) {
 			bestCandidate=cand1;
 		}
 		else
@@ -46,10 +47,15 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 
 		}
 		return bestCandidate;
+		
 	}
+	
+	
+	
 	public void addToShortlist(Candidate aCandidate)
 	{
 		shortList.add(aCandidate);
+		shortRateList.add(getRating(aCandidate));
 	}
 	
 	public void addCandidateToJobOffer(Candidate aCandidate)
@@ -65,11 +71,11 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 		int rate=0;
 	    int counter=0;
 		if(offerSkills.getDegreeGrade()<=aCandidate.getDegreeGrade())
-		    rate+=aCandidate.getDegreeGrade()-offerSkills.getDegreeGrade();
+		    rate+=aCandidate.getDegreeGrade()-(offerSkills.getDegreeGrade()-1);
 		if(offerSkills.getEducationLevel()<=aCandidate.getEducationLevel())
-			rate+=aCandidate.getEducationLevel()-offerSkills.getEducationLevel();
+			rate+=aCandidate.getEducationLevel()-(offerSkills.getEducationLevel()-1);
 		if(offerSkills.getWorkExperience()<=aCandidate.getWorkExperience())
-			rate+=aCandidate.getWorkExperience()-offerSkills.getWorkExperience();
+			rate+=aCandidate.getWorkExperience()-(offerSkills.getWorkExperience()-1);
 		for(String language :offerSkills.getProgrammingLanguages())
 		{
 			for(String languageCandidate: aCandidate.getProgrammingLanguages())
@@ -109,16 +115,21 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 			}
 		}
 		if (counter==offerSkills.getSoftwareKnowledge().size())
-			rate+=2;	
-		rateList.add(rate);
+			rate+=2;
+		if(enrolledCandidates.indexOf(aCandidate)<rateList.size())
+			rateList.set(enrolledCandidates.indexOf(aCandidate), rate);
+		else
+			rateList.add(rate);
+		if(shortList.contains(aCandidate))
+			shortRateList.set(shortList.indexOf(aCandidate),rate);
 	}
-	
+
 	public int  getRating(Candidate aCandidate)
 	{
 		int position=-1;
 		for(Candidate candidates: enrolledCandidates) 
 		{
-			if (aCandidate.equals(candidates))
+			if (aCandidate==candidates)
 				position=enrolledCandidates.indexOf(candidates);
 		}
 		return rateList.get(position);	
@@ -154,6 +165,9 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 		return enrolledCandidates;
 	}
 
+	public ArrayList<Integer> getShortRateList() {
+		return shortRateList;
+	}
 	public ArrayList<Candidate> getShortList() {
 		return shortList;
 	}
@@ -179,6 +193,10 @@ public class JobOffer implements Comparator<Candidate>,Comparable<Candidate>,Ser
 	}
 	public int  getEducationLevel() {
 		return offerSkills.getEducationLevel();
+	}
+
+	public ArrayList<Integer> getRateList() {
+		return rateList;
 	}
 }
 class Sortbyage implements Comparator<Candidate> 
@@ -241,9 +259,9 @@ class SortbyWorkExperience implements Comparator<Candidate>
    
     public int compare(Candidate cand1, Candidate cand2) 
     { 
-    	if(cand1.getDegreeGrade()>cand2.getDegreeGrade())
+    	if(cand1.getWorkExperience()>cand2.getWorkExperience())
     		return 1;
-    	else if(cand1.getDegreeGrade()==cand2.getDegreeGrade()) 
+    	else if(cand1.getWorkExperience()==cand2.getWorkExperience()) 
     	{
     		if(cand1.getRating()>cand2.getRating())
     			return 1;

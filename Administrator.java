@@ -23,6 +23,7 @@ public class Administrator implements Serializable
 		jobOffersList.add(aJobOffer);
 	}
 	
+	//verification eisodou xristi mesa sto system
 	public ArrayList<Integer> logAttempt(String aUsername, String aPassword)
 	{
 		ArrayList<Integer>  verification=new ArrayList<Integer>();
@@ -69,16 +70,29 @@ public class Administrator implements Serializable
 		
 	}
 	
+	//se periptosi diagrafis logariasmou, diagrafoume kai ola tou ta dedomena
+	//diladi tin iparxi tou sto sinolo ton xriston, tin iparxi tou apo ta applied job offers kai ta shortlist-ratelist tous
 	public void deleteAccount(User aUser) {
 		uList.remove(aUser);
-		for(JobOffer offer : jobOffersList) {
-			if(offer.getEnrolledCandidates().contains(aUser))
+		for(JobOffer offer : jobOffersList)
+		{
+			if(offer.getEnrolledCandidates().contains(aUser)) 
+			{
+			    offer.getRateList().remove(offer.getEnrolledCandidates().indexOf(aUser));
 				offer.getEnrolledCandidates().remove(aUser);
-				if(offer.getShortList().contains(aUser))
+			}
+				if(offer.getShortList().contains(aUser)) 
+				{
+					offer.getShortRateList().remove(offer.getShortList().indexOf(aUser));
 					offer.getShortList().remove(aUser);
+						
+				}
+	    }
+					
+				
 		}
 	}
 
 	
 	
-}
+

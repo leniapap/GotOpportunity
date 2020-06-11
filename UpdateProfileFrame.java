@@ -238,6 +238,8 @@ public class UpdateProfileFrame extends JFrame {
     		  programmingLanguagesSkills.add("C");
 	    	if(cPlusPlus.isSelected())
 	    	  programmingLanguagesSkills.add("C++");
+	    	if(java.isSelected())
+	    		programmingLanguagesSkills.add("Java");
 	    	if(python.isSelected())
 	    	  programmingLanguagesSkills.add("Python");
 	    	if(sql.isSelected())
@@ -273,12 +275,18 @@ public class UpdateProfileFrame extends JFrame {
 	    	if(tableau.isSelected())
 	    		SoftwareKnowledgeSkills.add("Tableau");
 	        if(matlab.isSelected())
+	        	SoftwareKnowledgeSkills.add("Matlab");
+	        if(sourceTree.isSelected())
 	        	SoftwareKnowledgeSkills.add("SourceTree");
 	        if(visualParadigm.isSelected())
 	        	SoftwareKnowledgeSkills.add("Visual Paradigm");
 	    
 	   Skills skills=new Skills(gradeSkills,educationlevelSkills,programmingLanguagesSkills,workExperienceSkills,foreignLanguagesSkills,SoftwareKnowledgeSkills);
 	   aCand.updateSkills(skills);
+	   for(JobOffer offer : Main.data.getjobOffersList()) {
+		   if(offer.getEnrolledCandidates().contains(aCand))
+			   offer.updateRateList(aCand);		   
+	   }
 	   //data entry
 		try {
 			FileOutputStream fouts = new FileOutputStream(Main.f);

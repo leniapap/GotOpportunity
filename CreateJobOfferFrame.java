@@ -279,6 +279,8 @@ public class CreateJobOfferFrame extends JFrame {
 	    		  programmingLanguagesSkills.add("C");
 		    	if(cPlusPlus.isSelected())
 		    	  programmingLanguagesSkills.add("C++");
+		    	if(java.isSelected())
+		    		programmingLanguagesSkills.add("Java");
 		    	if(python.isSelected())
 		    	  programmingLanguagesSkills.add("Python");
 		    	if(sql.isSelected())
@@ -314,6 +316,8 @@ public class CreateJobOfferFrame extends JFrame {
 		    	if(tableau.isSelected())
 		    		SoftwareKnowledgeSkills.add("Tableau");
 		        if(matlab.isSelected())
+		        	SoftwareKnowledgeSkills.add("Matlab");
+		        if(sourceTree.isSelected())
 		        	SoftwareKnowledgeSkills.add("SourceTree");
 		        if(visualParadigm.isSelected())
 		        	SoftwareKnowledgeSkills.add("Visual Paradigm");

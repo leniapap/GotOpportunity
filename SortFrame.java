@@ -147,7 +147,7 @@ public class SortFrame extends JFrame {
 							break;
 						}
 					}
-					JOptionPane.showMessageDialog(null, "->Selected Candidate's Skills: \n" +selectedCandidate.getDegreeGrade() +"\n ->Programming Languages: " +selectedCandidate.getProgrammingLanguages() +"\n ->Foreign Languages: " +selectedCandidate.getForeignLanguages()+"\n ->Educational Level: " +selectedCandidate.getEducationLevel()+"\n ->Software Knowledge: " +selectedCandidate.getSoftwareKnowledge()+"\n ->Working Experience: " +selectedCandidate.getWorkExperience()+ "  years"+"\n ->Grade of Degree: "+ selectedCandidate.getDegreeGrade());
+					JOptionPane.showMessageDialog(null, "->Selected Candidate's Skills: \n ->Grade of Degree: "+ selectedCandidate.getDegreeGrade() +"\n ->Programming Languages: " +selectedCandidate.getProgrammingLanguages() +"\n ->Foreign Languages: " +selectedCandidate.getForeignLanguages()+"\n ->Educational Level: " +selectedCandidate.getEducationLevel()+"\n ->Software Knowledge: " +selectedCandidate.getSoftwareKnowledge()+"\n ->Working Experience: " +selectedCandidate.getWorkExperience()+ "  years");
 				}
 				
 			}
